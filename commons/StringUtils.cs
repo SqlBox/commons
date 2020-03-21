@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace sqlbox.commons
@@ -13,7 +14,7 @@ namespace sqlbox.commons
         /// </summary>
         /// <param name="path"></param>
         /// <returns>String array of size 2 where 0 is the path and 1 is the filename</returns>
-        internal static string[] splitPath(string path)
+        public static string[] splitPath(string path)
         {
             string[] splitpath = new string[2];
             char splitchar = '\\';
@@ -37,7 +38,7 @@ namespace sqlbox.commons
         /// </summary>
         /// <param name="filename"></param>
         /// <returns>The extension of the file with . (.sql)</returns>
-        internal static string getExtension(string filename)
+        public static string getExtension(string filename)
         {
             string[] temp = filename.Split('.');
             return "." + temp[temp.Length - 1];
@@ -52,7 +53,7 @@ namespace sqlbox.commons
         /// eg.in /home/staff/folderOrFile
         /// out  folderOrFile
         /// </returns>
-        internal static string getLastPathName(string path)
+        public static string getLastPathName(string path)
         {
             return path.Substring(path.LastIndexOf(path.Contains('/') ? '/' : '\\'));
         }
@@ -64,7 +65,7 @@ namespace sqlbox.commons
         /// </summary>
         /// <param name="path"></param>
         /// <returns></returns>
-        internal static string getPathExceptLast(string path)
+        public static string getPathExceptLast(string path)
         {
             char splitchar = path.Contains('/') ? '/' : '\\';
             return path.Split(splitchar).Length > 2 ? path.Substring(0, path.LastIndexOf(splitchar)) : "/";
@@ -76,7 +77,7 @@ namespace sqlbox.commons
         /// <param name="thestring">The string</param>
         /// <param name="thechar">The char to search for</param>
         /// <returns></returns>
-        internal static int countOccurances(string thestring, char thechar)
+        public static int countOccurances(string thestring, char thechar)
         {
             int occurances = 0;
             foreach (char c in thestring)
@@ -92,13 +93,13 @@ namespace sqlbox.commons
         /// <param name="thestring">The string</param>
         /// <param name="searchstring">The string to search for within the first param</param>
         /// <returns></returns>
-        internal static int countOccurances(string thestring, string searchstring)
+        public static int countOccurances(string thestring, string searchstring)
         {
             return (thestring.Length - thestring.Replace(searchstring, "").Length) / searchstring.Length;
         }
 
 
-        internal static List<string> extractTableListFromString(string tablestring)
+        public static List<string> extractTableListFromString(string tablestring)
         {
             if (string.IsNullOrEmpty(tablestring))
             {
@@ -125,7 +126,7 @@ namespace sqlbox.commons
          * its the whole tab text
          * and if the tab text is null or empty
          **/
-        internal static string SelectedTextOrTabText(string selectedText, string tabText)
+        public static string SelectedTextOrTabText(string selectedText, string tabText)
         {
             return !string.IsNullOrEmpty(selectedText) ? selectedText : !string.IsNullOrEmpty(tabText) ? tabText : null;
         }
